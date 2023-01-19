@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chess.controller.GameController">
+    <top>
+        <BorderPane styleClass="header-section">
+            <left>
+                <Label id="header-text" text="Chess" />
+            </left>
+         <right>
+            <MenuButton mnemonicParsing="false" text="Options" BorderPane.alignment="CENTER">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Save Game" />
+                  <MenuItem mnemonicParsing="false" onAction="#switchToMenuView" text="Main Menu" />
+              </items>
+            </MenuButton>
+         </right>
+        </BorderPane>
+    </top>
+    <center>
+        <VBox styleClass="content-section">
+            <children>
+                <Label id="content-header" text="New Game" />
+            </children>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox styleClass="footer-section">
+            <children>
+                <Label text="Copyright 2023 Simen Kristiansen Sandhaug" />
+            </children>
+        </HBox>
+    </bottom>
+   <stylesheets>
+      <URL value="@css/global.css" />
+      <URL value="@css/menu.css" />
+   </stylesheets>
+</BorderPane>
