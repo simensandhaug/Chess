@@ -1,4 +1,4 @@
-package com.chess.controller;
+package com.chess.controllers;
 
 import java.io.IOException;
 
