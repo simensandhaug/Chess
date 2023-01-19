@@ -1,15 +1,15 @@
 package com.chess.models.pieces;
 
-import com.chess.models.board.Board;
-import com.chess.models.squares.Square;
-import com.chess.common.Location;
-import com.chess.common.LocationFactory;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class Knight extends Piece implements Movable {
+import com.chess.common.Location;
+import com.chess.common.LocationFactory;
+import com.chess.models.board.Board;
+import com.chess.models.squares.Square;
+
+public class Knight extends Piece {
 
     public Knight(Color color) {
         super(color);

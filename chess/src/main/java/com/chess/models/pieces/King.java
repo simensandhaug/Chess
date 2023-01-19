@@ -1,15 +1,14 @@
 package com.chess.models.pieces;
 
-import com.chess.models.board.Board;
-import com.chess.models.squares.Square;
-import com.chess.common.Location;
-
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
-public class King extends Piece implements Movable {
+import com.chess.common.Location;
+import com.chess.models.board.Board;
+import com.chess.models.squares.Square;
+
+public class King extends Piece {
 
     private Movable bishop;
     private Movable rook;

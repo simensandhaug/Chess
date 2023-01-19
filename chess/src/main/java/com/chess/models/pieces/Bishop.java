@@ -1,15 +1,15 @@
 package com.chess.models.pieces;
 
-import com.chess.models.board.Board;
-import com.chess.models.squares.Square;
-import com.chess.common.Location;
-import com.chess.common.LocationFactory;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class Bishop extends Piece implements Movable {
+import com.chess.common.Location;
+import com.chess.common.LocationFactory;
+import com.chess.models.board.Board;
+import com.chess.models.squares.Square;
+
+public class Bishop extends Piece {
 
     public Bishop(Color color) {
         super(color);
