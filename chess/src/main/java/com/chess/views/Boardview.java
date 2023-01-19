@@ -1,4 +1,4 @@
-package com.chess.view;
+package com.chess.views;
 
 public class Boardview {
     
