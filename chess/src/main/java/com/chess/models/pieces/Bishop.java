@@ -14,6 +14,7 @@ public class Bishop extends Piece {
     public Bishop(Color color) {
         super(color);
         this.name = "Bishop";
+        this.fenName = color == Color.WHITE ? "B" : "b";
     }
 
     @Override

@@ -3,8 +3,8 @@ package com.chess.common;
 import java.util.Objects;
 
 public class Location {
-    private final File file;
-    private final Integer rank;
+    private final File file; //A-H
+    private final Integer rank; //1-8
 
     public Location(File file, Integer rank) {
         this.file = file;
@@ -37,10 +37,7 @@ public class Location {
 
     @Override
     public String toString() {
-        return "{" +
-                " file='" + getFile() + "'" +
-                ", rank='" + getRank() + "'" +
-                "}";
+        return file.toString() + rank.toString();
     }
 
 }
