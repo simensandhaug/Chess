@@ -1,4 +1,4 @@
-package com.chess.models;
+package com.chess.models.player;
 
 public class Player {
     private String name;
