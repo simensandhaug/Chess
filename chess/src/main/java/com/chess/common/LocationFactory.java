@@ -4,7 +4,7 @@ public class LocationFactory {
     private static final File[] files = File.values();
 
     public static Location build(Location current, Integer fileOffset, Integer rankOffset) {
-        Integer currentFile = current.getFile().ordinal();
+        Integer currentFile = current.getFile().ordinal(); // 0-7
         return new Location(files[currentFile + fileOffset], current.getRank() + rankOffset);
     }
 }

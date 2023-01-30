@@ -2,6 +2,7 @@ package com.chess.models.game;
 
 import java.util.Scanner;
 
+import com.chess.common.FEN;
 import com.chess.common.File;
 import com.chess.common.Location;
 import com.chess.models.board.Board;
@@ -9,9 +10,14 @@ import com.chess.models.pieces.Movable;
 import com.chess.models.squares.Square;
 
 public class Game {
+    private static final String startingPositionFEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+    public static Board board;
     public static void main(String[] args) {
-        Board board = new Board();
-        board.printBoard();
+        String fenStr = args.length > 1 ? args[0] : startingPositionFEN;
+        String moves = args.length > 1 ? args[1] : "";
+        FEN fen = new FEN(fenStr);
+        board = new Board(fen, moves);
+        board.printTerminalBoard();
 
         Scanner scanner = new Scanner(System.in);
 
@@ -31,7 +37,8 @@ public class Game {
             fromSq.getPiece().makeMove(toSq);
             fromSq.reset();
 
-            board.printBoard();
+            board.printTerminalBoard();
+            board.printMoves();
 
         }
     }
@@ -39,4 +46,9 @@ public class Game {
     public static void printPiece(Movable piece) {
         System.out.println(piece.toString());
     }
+
+    public static Board getBoard() {
+        return board;
+    }
+
 }

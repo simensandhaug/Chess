@@ -5,8 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.chess.common.FEN;
 import com.chess.common.File;
 import com.chess.common.Location;
+import com.chess.common.Move;
 import com.chess.models.pieces.Color;
 import com.chess.models.pieces.Piece;
 import com.chess.models.pieces.PieceFactory;
@@ -19,22 +21,38 @@ public class Board {
 
     Square[][] board = new Square[BOARD_SIZE][BOARD_SIZE];
 
+    String moves;
+    Integer moveTally;
+    boolean isWhiteTurn;
+
     private final List<Piece> whitePieces = new ArrayList<>();
     private final List<Piece> blackPieces = new ArrayList<>();
 
-    public Board() {
+    private FEN fen;
 
+    public Board(FEN fen, String moves) {
         locationSquareMap = new HashMap<>();
-        Map<Location, Piece> pieces = PieceFactory.getPieces();
+        this.fen = fen;
+        this.moves = moves;
+        this.moveTally = fen.getFullMoveNumber();
+        this.isWhiteTurn = fen.isWhiteTurn() == true;
+        initializeBoard();
+    }
 
+
+    private void initializeBoard() {
+        Map<Location, Piece> pieces = PieceFactory.getPieces(fen);
+
+        // Populate the board with squares and pieces
         for (int i = 0; i < board.length; i++) {
             int col = 0;
             SquareColor squareColor = (i % 2 == 0) ? SquareColor.LIGHT : SquareColor.DARK;
             for (File file : File.values()) {
                 Square square = new Square(squareColor, new Location(file, BOARD_SIZE - i));
-
-                if (pieces.containsKey(square.getLocation())) {
-                    Piece piece = pieces.get(square.getLocation());
+                locationSquareMap.put(square.getLocation(), square);
+                
+                Piece piece = pieces.get(square.getLocation());
+                if (piece != null) {
                     square.setPiece(piece);
                     square.setIsOccupied(true);
                     piece.setSquare(square);
@@ -44,14 +62,12 @@ public class Board {
                         blackPieces.add(piece);
                     }
                 }
-
-                locationSquareMap.put(square.getLocation(), square);
-
                 board[i][col] = square;
                 squareColor = (squareColor == SquareColor.LIGHT) ? SquareColor.DARK : SquareColor.LIGHT;
                 col++;
             }
         }
+        
     }
 
     public Map<Location, Square> getLocationSquareMap() {
@@ -66,7 +82,7 @@ public class Board {
         return blackPieces;
     }
 
-    public void printBoard() {
+    public void printTerminalBoard() {
         for (int i = 0; i < board.length; i++) {
             System.out.print(BOARD_SIZE - i + " ");
             for (int j = 0; j < board[i].length; j++) {
@@ -87,4 +103,51 @@ public class Board {
         System.out.println();
     }
 
+    public void printMoves() {
+        System.out.println(moves);
+    }
+
+    public void setFen(FEN fen) {
+        this.fen = fen;
+    }
+
+    public FEN getFen() {
+        return fen;
+    }
+
+    public void setMoves(String moves) {
+        this.moves = moves;
+    }
+
+    public String getMoves() {
+        return moves;
+    }
+
+    public void setMoveTally(Integer moveTally) {
+        this.moveTally = moveTally;
+    }
+
+    public Integer getMoveTally() {
+        return moveTally;
+    }
+
+    public void incrementMoveTally() {
+        moveTally++;
+    }
+
+    public void decrementMoveTally() {
+        moveTally--;
+    }
+
+    public void addMove(Move move) {
+        moves += moveTally.toString() + ". " + move.toString() + ", ";
+    }
+
+    public void setIsWhiteTurn(boolean b) {
+        isWhiteTurn = b;
+    }
+
+    public boolean getIsWhiteTurn() {
+        return isWhiteTurn;
+    }
 }

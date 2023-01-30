@@ -14,6 +14,7 @@ public class Rook extends Piece {
     public Rook(Color color) {
         super(color);
         this.name = "Rook";
+        this.fenName = color == Color.WHITE ? "R" : "r";
     }
 
     @Override

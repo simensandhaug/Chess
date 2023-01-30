@@ -17,6 +17,7 @@ public class Pawn extends Piece {
     public Pawn(Color color) {
         super(color);
         this.name = "Pawn";
+        this.fenName = color == Color.WHITE ? "P" : "p";
     }
 
     @Override

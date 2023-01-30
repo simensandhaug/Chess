@@ -14,6 +14,7 @@ public class Knight extends Piece {
     public Knight(Color color) {
         super(color);
         this.name = "Knight";
+        this.fenName = color == Color.WHITE ? "N" : "n";
     }
 
     @Override

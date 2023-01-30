@@ -16,6 +16,7 @@ public class King extends Piece {
     public King(Color color) {
         super(color);
         this.name = "King";
+        this.fenName = color == Color.WHITE ? "K": "k";
     }
 
     public King(Color color, Movable bishop, Movable rook) {
